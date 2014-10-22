@@ -7,6 +7,7 @@ class TrainersController < ApplicationController
 
   def show
     @trainer = Trainer.find(params[:id])
+    @pokemon = Pokemon.where(trainer_id: @trainer)
     unless @trainer == current_trainer
       redirect_to :back, :alert => "Access denied."
     end
