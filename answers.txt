@@ -1,0 +1,30 @@
+Question 0: Why is this error being thrown?
+
+We haven't defined a Pokemon model, but our home_controller calls Pokemon.where. So, it can't find Pokemon and throws an error.
+
+Question 1: How are the random Pokemon appearing? What is the common factor between all the possible Pokemon that appear? 
+
+The Pokemon are all defined in seeds.rb, they are what we populated the database with. Because our seed Pokemon don't have a trainer associated with it, they are part of the trainerless_pokemon defined in home_controller for the index. 
+
+Question 2a: What does the following line in the help text do? Be specific about what "capture_path(id: @pokemon)" is doing. If you're having trouble, look at the Help section in the README. *
+<%= button_to "Throw a Pokeball!", capture_path(id: @pokemon), :class => "button medium", :method => :patch %>
+
+It creates a button that says "Throw a Pokeball!" that calls the capture function in pokemon_controller and puts the current pokemon
+s id into the params. It's a patch request, so it is going to update a pokemon that has already been created
+
+Question 2b: Change the URI pattern of the capture_path from "capture" to "asdf". Try capturing another Pokemon. Why does the route still work? 
+
+The route still works because the button calls the capture function using the prefix "capture", so it doesn't depend on the URI to be anything specific.
+
+Question 3: What would you name your own Pokemon? *
+:D
+
+
+
+Question 4: What did you pass into the redirect_to? If it is a path, what did that path need? If it is not a path, why is it okay not to have a path here?
+
+
+
+Question 5: Explain how putting this line "flash[:error] = @pokemon.errors.full_messages.to_sentence" shows error messages on your form. *
+Hint: Take a look at views/layouts/application.html.erb. What does this file do, and what is it rendering? If you need to learn more about application.html.erb, Google is your friend!
+
