@@ -2,7 +2,26 @@
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
 <h3> POKEMON </h3>
-<% @pokemon.each do |p| %>
-  <h4> <%= p.name %> </h4>
-  <p> Level: <%= p.level %> </p>
+<% if @pokemon.empty? %>
+  <p> No pokemon :( ... time to heal or catch some </p>
+<% else %>
+  <% @pokemon.each do |p| %>
+    <% if p.health > 0 %>
+      <h4> <%= p.name %> </h4>
+      <p> Level: <%= p.level %> <br>
+      Health: <%= p.health %> </p>
+      <%= button_to "Attack this Pokemon!", damage_path(id: p.id), :class => "button medium", :method => :patch %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h3>Healing Center:</h3>
+<% if @heal_pokemon.empty? %>
+  <p> Nobody to heal =D </p>
+<% else %>
+  <% @heal_pokemon.each do |p| %>
+    <h4> <%= p.name %> </h4>
+    <p> Health: <%= p.health %> </p>
+    <%= button_to "Heal this Pokemon", heal_path(id: p.id), :class => "button medium", :method => :patch %>
+  <% end %>
 <% end %>
