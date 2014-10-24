@@ -1,6 +1,11 @@
 <h3>Trainer</h3>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
+
+<% if @trainer == current_trainer %>
+  <%= button_to "Create Pokemon!", new_pokemon_path, :class => "button medium", :method => :get %>
+<% end %>
+
 <h3> POKEMON </h3>
 <% if @pokemon.empty? %>
   <p> No pokemon :( ... time to heal or catch some </p>
